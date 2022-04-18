@@ -1,0 +1,11 @@
+Model Information:
+* title:	Humanoid robot steampunky
+* source:	https://sketchfab.com/3d-models/humanoid-robot-steampunky-577a6f0543554473ab4f825eb8374d17
+* author:	Amzar Raif (https://sketchfab.com/amzarraif99)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Humanoid robot steampunky" (https://sketchfab.com/3d-models/humanoid-robot-steampunky-577a6f0543554473ab4f825eb8374d17) by Amzar Raif (https://sketchfab.com/amzarraif99) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
