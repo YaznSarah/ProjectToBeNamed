@@ -7,9 +7,9 @@ public class PlayerInput : MonoBehaviour
     public float speed = 12f;
     public float jumpHeight = 2f;
     public float sensi = .5f;
-    public float gravity = -9.81f;
+    private float _gravity = -9.81f;
 
-    Vector2 seeDir;
+    private Vector2 seeDir;
     public GameObject cam;
     public GameObject weapon;
 
@@ -17,10 +17,10 @@ public class PlayerInput : MonoBehaviour
     public LayerMask groundMask;
     public float groundDistance = 0.4f;
 
-    Vector3 velocity;
+    private Vector3 _velocity;
     public CharacterController playerMovements;
 
-    bool isGrounded;
+    private bool _isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -41,11 +41,11 @@ public class PlayerInput : MonoBehaviour
             }
         }
         
-        isGrounded = Physics.CheckSphere(groundPos.position, groundDistance, groundMask);
+        _isGrounded = Physics.CheckSphere(groundPos.position, groundDistance, groundMask);
 
-        if (isGrounded && velocity.y < -2f)
+        if (_isGrounded && _velocity.y < -2f)
         {
-            velocity.y = -2f;
+            _velocity.y = -2f;
         }
 
         Vector3 movement = transform.right * Input.GetAxis("Horizontal") +
@@ -53,15 +53,15 @@ public class PlayerInput : MonoBehaviour
         playerMovements.Move(movement * speed * Time.deltaTime);
 
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && _isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity * Time.deltaTime);
-            Debug.Log(velocity.y);
+            _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity * Time.deltaTime);
+            Debug.Log(_velocity.y);
         }
 
-        velocity.y += gravity * Time.deltaTime;
+        _velocity.y += _gravity * Time.deltaTime;
 
-        playerMovements.Move(velocity * Time.deltaTime);
+        playerMovements.Move(_velocity * Time.deltaTime);
 
         // if (Input.GetKeyDown("space")) {
         //     if((lastYpos - transform.position.y) < .1f && (lastYpos - transform.position.y) > -.1f) {
