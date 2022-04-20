@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerInput : MonoBehaviour
 {
     public float speed = 12f;
     public float jumpHeight = 2f;
@@ -31,6 +31,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseMenu pauseMenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+            pauseMenu.Pause();
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+               pauseMenu.Resume();
+            }
+        }
+        
         isGrounded = Physics.CheckSphere(groundPos.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < -2f)
