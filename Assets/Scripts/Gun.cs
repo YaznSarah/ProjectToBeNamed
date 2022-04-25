@@ -31,6 +31,7 @@ public class Gun : MonoBehaviour
     void Shoot() {
         
         //check if the firerate is ok, then instantiate a bullet and add velocity to it
+        
         GameObject bulletClone = Instantiate(bullet, bulletStartingPosition.position, transform.rotation);
         bulletClone.GetComponent<Rigidbody>().velocity = transform.forward * 40;
         Destroy(bulletClone, 2f);

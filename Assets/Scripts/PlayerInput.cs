@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
     public float speed = 12f;
     public float jumpHeight = 2f;
     public float sensi = .5f;
-    private float _gravity = -9.81f;
+    public float _gravity = -20f;
 
     private Vector2 seeDir;
     public GameObject cam;
