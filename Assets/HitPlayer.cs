@@ -14,6 +14,10 @@ public class HitPlayer : MonoBehaviour
             GameObject.FindWithTag("Player").GetComponent<PlayerLife>().giveLife(-10);
             Destroy(gameObject);
 
+        } else if(other.gameObject.layer  == LayerMask.NameToLayer("Ground")) {
+
+            Destroy(gameObject);
+
         }
     }
 }

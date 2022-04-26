@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 seeDir;
     public GameObject cam;
     public GameObject weapon;
+    private bool showWeapon = false;
 
     public Transform groundPos;
     public LayerMask groundMask;
@@ -26,6 +27,12 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void GiveWeapon()
+    {
+        showWeapon = true;
+        weapon.SetActive(true);
     }
 
     // Update is called once per frame
@@ -86,6 +93,8 @@ public class PlayerInput : MonoBehaviour
         }
 
         cam.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
-        weapon.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
+        if(showWeapon) {
+            weapon.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
+        }
     }
 }

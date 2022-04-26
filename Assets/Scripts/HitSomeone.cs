@@ -23,9 +23,12 @@ public class HitSomeone : MonoBehaviour
         {
             //find game object with the tag "Player" and call the give life function
             GameObject.FindWithTag("Player").GetComponent<PlayerLife>().giveLife(10);
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<AIManager>().GetHit();
             Destroy(gameObject);
 
+        //check if gameobject layer is ground
+        } else if(other.gameObject.layer  == LayerMask.NameToLayer("Ground")) {
+            Destroy(gameObject);
         }
     }
 }
