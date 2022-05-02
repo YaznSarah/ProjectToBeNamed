@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public float speed = 12f;
+    public float speed = 6f;
     public float jumpHeight = 2f;
     public float sensi = .5f;
     public float _gravity = -20f;

@@ -12,7 +12,6 @@ public class CheckIfPlayerHit : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {   
-        Debug.Log("aa");
         if (other.gameObject.tag == "Player")
         {   
             Debug.Log("Trigger win");

@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIManager : MonoBehaviour
 {
     private GameObject _player;
-    public float minDist = 10f;
+    private float _minDist = 60f;  
+    private float _maxDist = 4f;
     public float speed;
     private Animator _animator;
     public bool isMoving;
-    public float maxDist = 4f;
+  
 
 
     // Start is called before the first frame update
@@ -21,14 +23,13 @@ public class AIManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-
-        Debug.Log("HEy");
+    {
+        _animator.SetBool("isMoving", isMoving);
         Vector3 dist = (_player.transform.position - transform.position);
-         if (dist.sqrMagnitude < minDist)
+        if (dist.sqrMagnitude < _minDist)
         {
-            if (dist.sqrMagnitude > maxDist) {
-                transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
+            Debug.Log(dist.sqrMagnitude);
+            if (dist.sqrMagnitude > _maxDist) {
                 isMoving = true;
                 transform.LookAt(_player.transform);
             }
@@ -38,7 +39,5 @@ public class AIManager : MonoBehaviour
             isMoving = false;
         }
 
-        _animator.SetBool("isMoving",isMoving);
-        
     }
 }

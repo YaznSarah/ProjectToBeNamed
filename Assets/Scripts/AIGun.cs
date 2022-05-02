@@ -43,7 +43,6 @@ public class AIGun : MonoBehaviour
             //if the firerate is at 0, then fire using the AIGun script
                 if (fireRate <= 0f)
                 {
-                    Debug.Log("Shoot1");
                     Shoot();
                     fireRate = 3f;
                 }
@@ -64,11 +63,9 @@ public class AIGun : MonoBehaviour
 
     public void Shoot() {
         
-        Debug.Log("Shoot");
         //check if the firerate is ok, then instantiate a bullet and add velocity to it
         GameObject bulletClone = Instantiate(bullet, bulletStartingPosition.position, transform.rotation);
 
-        
         Vector3 direction = GameObject.FindWithTag("Player").transform.position - bulletStartingPosition.position;
         Vector3 newvector = Vector3.Normalize(direction);
 
