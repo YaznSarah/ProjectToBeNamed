@@ -35,6 +35,12 @@ public class PlayerInput : MonoBehaviour
         weapon.SetActive(true);
     }
 
+    public void destroyWeapon()
+    {
+        showWeapon = false;
+        weapon.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -63,7 +69,6 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity * Time.deltaTime);
-            Debug.Log(_velocity.y);
         }
 
         _velocity.y += _gravity * Time.deltaTime;

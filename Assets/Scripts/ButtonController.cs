@@ -16,9 +16,9 @@ public class ButtonController : MonoBehaviour
 		SceneManager.LoadScene("EliottGScene");
 	}
 
-    // Update is called once per frame
-    void Update()
+    public void QuitGame()
     {
-        
+        Application.Quit();
     }
+    
 }

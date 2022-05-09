@@ -49,7 +49,6 @@ public class AIManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(head.position, dir, out hit, minDist))
         {   
-            Debug.Log(hit.collider.gameObject.tag);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
                 if (dist.sqrMagnitude > maxDist) {

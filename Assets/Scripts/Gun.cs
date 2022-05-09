@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     public float damage = 10f;
     public float range = 100f;
     public float fireRate = 15f;
+    public int numberOfShots = 5;
 
     public Transform bulletStartingPosition;
     public GameObject bullet;
@@ -23,6 +24,12 @@ public class Gun : MonoBehaviour
     {
 
         if(Input.GetButtonDown("Fire1")) {
+            numberOfShots--;
+            if(numberOfShots == 0) {
+                GameObject.FindWithTag("Player").GetComponent<PlayerInput>().destroyWeapon();
+                Destroy(gameObject);
+            }
+            //go on the player playerInput script and destroy the gun
             Shoot();
         }
 

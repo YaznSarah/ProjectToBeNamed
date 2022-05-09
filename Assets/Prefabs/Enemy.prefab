@@ -949,7 +949,7 @@ MonoBehaviour:
   range: 100
   bulletStartingPosition: {fileID: 348053409115653968}
   bullet: {fileID: 8135536466213938439, guid: 38aacaa889de536469ad08c44c2080d8, type: 3}
-  fireRate: 1
+  fireRate: 0.5
 --- !u!1 &2766958408393072219
 GameObject:
   m_ObjectHideFlags: 0
