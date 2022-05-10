@@ -77,19 +77,26 @@ public class PlayerLife : MonoBehaviour
 
     public void triggerVictory() {
         Cursor.lockState = CursorLockMode.None;
-        Debug.Log("aaaa");
         victoryObject.gameObject.SetActive(true);
-        Debug.Log("bbbb");
         // Time.timeScale = 0;
     }
 
     public void onRestart() {
-        SceneManager.LoadScene("EliottGScene");
+        Scene scene = SceneManager.GetActiveScene(); 
+        SceneManager.LoadScene(scene.name);
     }
+
+    public void goToNextLevel() {
+        SceneManager.LoadScene("Map2");
+    } 
 
     void changeHealthColor(Color healthColor)
     {
         healthBar.color = healthColor;
+    }
+
+    public void returnToMenu() {
+        SceneManager.LoadScene("Menu");
     }
  
 }
