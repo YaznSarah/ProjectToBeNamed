@@ -11,8 +11,13 @@ public class PlayerInput : MonoBehaviour
 
     private Vector2 seeDir;
     public GameObject cam;
+
     public GameObject weapon;
-    private bool showWeapon = false;
+    
+    [HideInInspector]
+    public bool showWeapon = false;
+    [HideInInspector]
+    public float weaponType = 1;
 
     public Transform groundPos;
     public LayerMask groundMask;
@@ -25,13 +30,14 @@ public class PlayerInput : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void GiveWeapon()
+    public void GiveWeapon(float newWeaponType)
     {
         showWeapon = true;
+        weaponType = newWeaponType;
         weapon.SetActive(true);
     }
 
@@ -75,14 +81,6 @@ public class PlayerInput : MonoBehaviour
 
         playerMovements.Move(_velocity * Time.deltaTime);
 
-        // if (Input.GetKeyDown("space")) {
-        //     if((lastYpos - transform.position.y) < .1f && (lastYpos - transform.position.y) > -.1f) {
-        //         GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
-        //     }
-        // }
-
-        // lastYpos = transform.position.y;
-
 
         seeDir.x += Input.GetAxis("Mouse X") * sensi;
         seeDir.y += Input.GetAxis("Mouse Y") * sensi;
@@ -98,6 +96,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         cam.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
+
         if(showWeapon) {
             weapon.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
         }

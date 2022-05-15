@@ -10,13 +10,16 @@ public class AIManager : MonoBehaviour
     public float speed;
     private Animator _animator;
     public bool isMoving;
+    
     public Transform head;
     private Transform playerHead;
     public float maxDist = 4f;
+    
     public float baseLife = 3f;
     private float life;
     public Image healthBar;
 
+    private bool isFreezed;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,18 @@ public class AIManager : MonoBehaviour
         }
     }
 
+    public void Freeze(float seconds) {
+        isFreezed = true;
+        //start coroutine unFreeze
+        StartCoroutine(unfreeze(seconds));
+    }
+
+    //create a routine that set isFreezed to false in n seconds
+    IEnumerator unfreeze(float seconds) {
+        yield return new WaitForSeconds(seconds);
+        isFreezed = false;
+    }
+
     // Update is called once per frame
     void Update()
     {   
@@ -45,40 +60,35 @@ public class AIManager : MonoBehaviour
         Vector3 dist = (_player.transform.position - transform.position);
         Vector3 dir = (playerHead.transform.position - head.position).normalized;
 
+        isMoving = false;
+
         //check with a ray if the player can be seen
         RaycastHit hit;
         if (Physics.Raycast(head.position, dir, out hit, minDist))
         {   
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                if (dist.sqrMagnitude > maxDist) {
-
-                Debug.Log("Player seen");
-                isMoving = true;
-                transform.LookAt(_player.transform);
-                //move towards the player
-                transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
+                if (dist.sqrMagnitude < minDist * minDist) {
+                    
+                    transform.LookAt(_player.transform);
+                    //move towards the player
+                    if(dist.sqrMagnitude < maxDist * maxDist) {
+                        isMoving = true;
+                        _animator.SetBool("isMoving",true);
+                        return;
+                    }
+                    
+                    if(!isFreezed) {
+                        isMoving = true;
+                        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
+                    }
                 }
             }
-            else
-            {
-                isMoving = false;
-            }
         }
-        //  if (dist.sqrMagnitude < minDist)
-        // {
-        //     if (dist.sqrMagnitude > maxDist) {
-        //         transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, speed * Time.deltaTime);
-        //         isMoving = true;
-        //         transform.LookAt(_player.transform);
-        //     }
-        // }
-        // else
-        // {
-        //     isMoving = false;
-        // }
 
-        _animator.SetBool("isMoving",isMoving);
+        _animator.SetBool("isMoving",true);
+
+        
         
     }
 }
