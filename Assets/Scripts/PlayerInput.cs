@@ -11,7 +11,13 @@ public class PlayerInput : MonoBehaviour
 
     private Vector2 seeDir;
     public GameObject cam;
+
     public GameObject weapon;
+    
+    [HideInInspector]
+    public bool showWeapon = false;
+    [HideInInspector]
+    public float weaponType = 1;
 
     public Transform groundPos;
     public LayerMask groundMask;
@@ -24,8 +30,21 @@ public class PlayerInput : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void GiveWeapon(float newWeaponType)
+    {
+        showWeapon = true;
+        weaponType = newWeaponType;
+        weapon.SetActive(true);
+    }
+
+    public void destroyWeapon()
+    {
+        showWeapon = false;
+        weapon.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,20 +75,11 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Jump") && _isGrounded)
         {
             _velocity.y = Mathf.Sqrt(jumpHeight * -2f * _gravity * Time.deltaTime);
-            Debug.Log(_velocity.y);
         }
 
         _velocity.y += _gravity * Time.deltaTime;
 
         playerMovements.Move(_velocity * Time.deltaTime);
-
-        // if (Input.GetKeyDown("space")) {
-        //     if((lastYpos - transform.position.y) < .1f && (lastYpos - transform.position.y) > -.1f) {
-        //         GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
-        //     }
-        // }
-
-        // lastYpos = transform.position.y;
 
 
         seeDir.x += Input.GetAxis("Mouse X") * sensi;
@@ -86,6 +96,9 @@ public class PlayerInput : MonoBehaviour
         }
 
         cam.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
-        weapon.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
+
+        if(showWeapon) {
+            weapon.transform.localRotation = Quaternion.Euler(-seeDir.y, 0, 0);
+        }
     }
 }

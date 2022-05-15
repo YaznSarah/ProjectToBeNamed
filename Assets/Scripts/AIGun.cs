@@ -6,7 +6,7 @@ public class AIGun : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject _weapon;
-    private AIManager _player;
+    private AIManager _ai;
     private Vector3 _holsterLocation;
     private Vector3 _holsterRotation;
     public float damage = 10f;
@@ -28,7 +28,7 @@ public class AIGun : MonoBehaviour
     {
         _weapon = gameObject;
         storePositions();
-        _player = GetComponentInParent<AIManager>();
+        _ai = GetComponentInParent<AIManager>();
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class AIGun : MonoBehaviour
 
         
 
-        if (_player.isMoving)
+        if (_ai.isMoving)
         {
             
             //if the firerate is at 0, then fire using the AIGun script
