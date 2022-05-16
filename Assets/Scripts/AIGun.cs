@@ -33,23 +33,19 @@ public class AIGun : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-
-        
-
+    {
         if (_ai.isMoving)
         {
-            
             //if the firerate is at 0, then fire using the AIGun script
-                if (fireRate <= 0f)
-                {
-                    Shoot();
-                    fireRate = 3f;
-                }
-                else
-                {
-                    fireRate -= Time.deltaTime;
-                }
+            if (fireRate <= 0f)
+            {
+                Shoot();
+                fireRate = 3f;
+            }
+            else
+            {
+                fireRate -= Time.deltaTime;
+            }
 
             _weapon.transform.localPosition = new Vector3(1.7581f, 1.4732f, 1.1357f);
             _weapon.transform.localEulerAngles = new Vector3(2.147f, 15.318f, 2.474f);
@@ -61,16 +57,15 @@ public class AIGun : MonoBehaviour
         }
     }
 
-    public void Shoot() {
-        
+    public void Shoot()
+    {
         //check if the firerate is ok, then instantiate a bullet and add velocity to it
         GameObject bulletClone = Instantiate(bullet, bulletStartingPosition.position, transform.rotation);
 
         Vector3 direction = GameObject.FindWithTag("Player").transform.position - bulletStartingPosition.position;
         Vector3 newvector = Vector3.Normalize(direction);
 
-        bulletClone.GetComponent<Rigidbody>().velocity = newvector  * 40;
+        bulletClone.GetComponent<Rigidbody>().velocity = newvector * 40;
         Destroy(bulletClone, 2f);
-
     }
 }
