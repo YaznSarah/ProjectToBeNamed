@@ -14,7 +14,9 @@ public class AIGun : MonoBehaviour
 
     public Transform bulletStartingPosition;
     public GameObject bullet;
-    public float fireRate = 0f;
+
+    [HideInInspector]
+    float fireRate = 0f;
 
     void storePositions()
     {
@@ -44,7 +46,7 @@ public class AIGun : MonoBehaviour
                 if (fireRate <= 0f)
                 {
                     Shoot();
-                    fireRate = 3f;
+                    fireRate = 1.5f;
                 }
                 else
                 {

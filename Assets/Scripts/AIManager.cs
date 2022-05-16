@@ -9,6 +9,8 @@ public class AIManager : MonoBehaviour
     public float minDist = 80f;
     public float speed;
     private Animator _animator;
+
+    [HideInInspector]
     public bool isMoving;
     
     public Transform head;
@@ -86,7 +88,7 @@ public class AIManager : MonoBehaviour
             }
         }
 
-        _animator.SetBool("isMoving",true);
+        _animator.SetBool("isMoving", isMoving);
 
         
         

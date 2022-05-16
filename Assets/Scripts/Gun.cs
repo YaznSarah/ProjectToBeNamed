@@ -24,6 +24,7 @@ public class Gun : MonoBehaviour
             numberOfShots--;
             if(numberOfShots == 0) {
                 gameObject.GetComponent<PlayerInput>().destroyWeapon();
+                numberOfShots = 5;
             }
             //go on the player playerInput script and destroy the gun
             Shoot();

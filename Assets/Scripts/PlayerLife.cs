@@ -31,7 +31,7 @@ public class PlayerLife : MonoBehaviour
         isFreezed = false;
         gameOver.gameObject.SetActive(false);
         victoryObject.gameObject.SetActive(false);
-                currentTimeToLive = timeToLive;
+        currentTimeToLive = timeToLive;
         timeToLiveText.text = getTimeText(currentTimeToLive);
     }
 
@@ -56,6 +56,7 @@ public class PlayerLife : MonoBehaviour
     }
 
     public void giveLife(float amount) {
+        if(finished) return;
         currentTimeToLive += amount;
     }
 
@@ -88,7 +89,7 @@ public class PlayerLife : MonoBehaviour
                 return;
             }
 
-            if (currentTimeToLive > 60) {
+            if (currentTimeToLive > 15) {
                 currentTimeToLive -= Time.deltaTime;
                 healthBar.fillAmount = currentTimeToLive / timeToLive;
                 changeHealthColor(Color.green);

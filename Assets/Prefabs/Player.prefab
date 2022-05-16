@@ -659,6 +659,7 @@ MonoBehaviour:
   totalTimeToLive: 120
   timeToLiveText: {fileID: 0}
   totalTimeToLiveText: {fileID: 0}
+  totalTimeLivedText: {fileID: 0}
   gameOver: {fileID: 0}
   victoryObject: {fileID: 0}
 --- !u!143 &4401041913376354301

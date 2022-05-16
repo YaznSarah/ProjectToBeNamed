@@ -949,7 +949,7 @@ MonoBehaviour:
   range: 100
   bulletStartingPosition: {fileID: 348053409115653968}
   bullet: {fileID: 8135536466213938439, guid: 38aacaa889de536469ad08c44c2080d8, type: 3}
-  fireRate: 0.5
+  fireRate: 0.2
 --- !u!1 &2766958408393072219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d81d5593a5b940b927e01b4d24fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDist: 15
+  minDist: 30
   speed: 3
   isMoving: 0
   head: {fileID: 4272300681180722398}
