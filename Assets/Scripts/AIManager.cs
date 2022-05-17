@@ -9,16 +9,15 @@ public class AIManager : MonoBehaviour
     private Animator _animator;
     private Transform playerHead;
 
-    public float minDist = 80f;
+    public float minDist = 30f;
     public float speed;
 
-    [HideInInspector]
-    public bool isMoving;
+    [HideInInspector] public bool isMoving;
     public bool isDead;
 
     public Transform head;
 
-    public float maxDist = 4f;
+    public float maxDist = 80f;
 
     public float baseLife = 3f;
     private float _life;
@@ -44,7 +43,7 @@ public class AIManager : MonoBehaviour
         {
             isDead = true;
             isMoving = false;
-            Object.Destroy(gameObject, 3f);
+            Object.Destroy(gameObject, 10f);
         }
         else
         {
@@ -69,40 +68,27 @@ public class AIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _animator.SetBool("isMoving", isMoving);
         Vector3 dist = (_player.transform.position - transform.position);
-        Vector3 dir = (playerHead.transform.position - head.position).normalized;
-
-        isMoving = false;
-
-        //check with a ray if the player can be seen
+        
+        //check with a ray if player can be seen
+        Vector3 headDir = (playerHead.transform.position - head.position.normalized);
         RaycastHit hit;
-        if (Physics.Raycast(head.position, dir, out hit, minDist))
+        if ((dist.sqrMagnitude < minDist))
         {
-            if (hit.collider.gameObject.CompareTag("Player"))
+            Debug.Log(dist.sqrMagnitude);
+            if (dist.sqrMagnitude > maxDist)
             {
-                if (dist.sqrMagnitude < minDist * minDist)
-                {
-                    transform.LookAt(_player.transform);
-                    //move towards the player
-                    if (dist.sqrMagnitude < maxDist * maxDist)
-                    {
-                        isMoving = true;
-                        _animator.SetBool("isMoving", true);
-                        return;
-                    }
-
-                    if (!isFreezed)
-                    {
-                        isMoving = true;
-                        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position,
-                            speed * Time.deltaTime);
-                    }
-                }
+                isMoving = true;
+                transform.LookAt(_player.transform);
             }
         }
+        else
+        {
+            isMoving = false;
+        }
 
-        _animator.SetBool("isMoving", isMoving);    
+        _animator.SetBool("isMoving", isMoving);
         _animator.SetBool("isDead", isDead);
-
     }
 }
