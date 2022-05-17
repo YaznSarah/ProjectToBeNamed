@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,7 +25,7 @@ public class EnemyNavMesh : MonoBehaviour
         }
         else if(_aiManager.isDead)
         {
-            _navMeshAgent.Stop();
+            _navMeshAgent.isStopped = true;
         }
     }
 }

@@ -68,27 +68,40 @@ public class AIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _animator.SetBool("isMoving", isMoving);
         Vector3 dist = (_player.transform.position - transform.position);
-        
-        //check with a ray if player can be seen
-        Vector3 headDir = (playerHead.transform.position - head.position.normalized);
+        Vector3 dir = (playerHead.transform.position - head.position).normalized;
+
+        isMoving = false;
+
+        //check with a ray if the player can be seen
         RaycastHit hit;
-        if ((dist.sqrMagnitude < minDist))
+        if (Physics.Raycast(head.position, dir, out hit, minDist))
         {
-            Debug.Log(dist.sqrMagnitude);
-            if (dist.sqrMagnitude > maxDist)
+            if (hit.collider.gameObject.CompareTag("Player"))
             {
-                isMoving = true;
-                transform.LookAt(_player.transform);
+                if (dist.sqrMagnitude < minDist * minDist)
+                {
+                    transform.LookAt(_player.transform);
+                    //move towards the player
+                    if (dist.sqrMagnitude < maxDist * maxDist)
+                    {
+                        isMoving = true;
+                        _animator.SetBool("isMoving", true);
+                        return;
+                    }
+
+                    if (!isFreezed)
+                    {
+                        isMoving = true;
+                        /*transform.position = Vector3.MoveTowards(transform.position, _player.transform.position,
+                            speed * Time.deltaTime);*/
+                    }
+                }
             }
         }
-        else
-        {
-            isMoving = false;
-        }
 
-        _animator.SetBool("isMoving", isMoving);
+        _animator.SetBool("isMoving", isMoving);    
         _animator.SetBool("isDead", isDead);
+
     }
 }
