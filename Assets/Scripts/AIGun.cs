@@ -35,16 +35,13 @@ public class AIGun : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-
-        
-
+    {
         if (_ai.isMoving)
         {
-            
             //if the firerate is at 0, then fire using the AIGun script
                 if (fireRate <= 0f)
-                {
+                {   
+                    if(GameObject.FindWithTag("Player").GetComponent<PlayerLife>().finished) return;
                     Shoot();
                     fireRate = 1.5f;
                 }
@@ -63,17 +60,15 @@ public class AIGun : MonoBehaviour
         }
     }
 
-    public void Shoot() {
-        
+    public void Shoot()
+    {
         //check if the firerate is ok, then instantiate a bullet and add velocity to it
         GameObject bulletClone = Instantiate(bullet, bulletStartingPosition.position, transform.rotation);
 
-        
         Vector3 direction = GameObject.FindWithTag("Player").transform.position - bulletStartingPosition.position;
         Vector3 newvector = Vector3.Normalize(direction);
 
-        bulletClone.GetComponent<Rigidbody>().velocity = newvector  * 40;
+        bulletClone.GetComponent<Rigidbody>().velocity = newvector * 40;
         Destroy(bulletClone, 2f);
-
     }
 }
