@@ -328,6 +328,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 494403959}
     - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
+      propertyPath: timeToLive
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: victoryObject
       value: 
       objectReference: {fileID: 1862879783}
@@ -335,6 +339,10 @@ PrefabInstance:
       propertyPath: timeToLiveText
       value: 
       objectReference: {fileID: 1055088175}
+    - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
+      propertyPath: totalTimeToLive
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: totalTimeLivedText
       value: 

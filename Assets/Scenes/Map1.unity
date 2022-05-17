@@ -7239,7 +7239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401041913376354297, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4401041913376354297, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7247,7 +7247,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401041913376354297, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.46
       objectReference: {fileID: 0}
     - target: {fileID: 4401041913376354297, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7286,6 +7286,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 494403959}
     - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
+      propertyPath: timeToLive
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: victoryObject
       value: 
       objectReference: {fileID: 1862879783}
@@ -7294,11 +7298,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1055088175}
     - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
+      propertyPath: totalTimeToLive
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401041913376354299, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
       propertyPath: totalTimeToLiveText
       value: 
       objectReference: {fileID: 513300110}
     m_RemovedComponents:
-    - {fileID: 4401041912221679913, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 6a4519c99aa7f83499dd2193c82d6c9a, type: 3}
 --- !u!1001 &5296183034133148964
 PrefabInstance:

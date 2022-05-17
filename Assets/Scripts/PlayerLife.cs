@@ -23,7 +23,7 @@ public class PlayerLife : MonoBehaviour
 
     float currentTimeToLive;
     bool isFreezed;
-    bool finished = false;
+    public bool finished = false;
 
     void Start() {
         finished = false;
