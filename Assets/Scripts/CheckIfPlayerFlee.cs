@@ -8,7 +8,6 @@ public class CheckIfPlayerFlee : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Trigger win");
             other.gameObject.GetComponent<PlayerLife>().triggerGameOver();
         }
     }
