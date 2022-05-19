@@ -9,16 +9,15 @@ public class AIManager : MonoBehaviour
     private Animator _animator;
     private Transform playerHead;
 
-    public float minDist = 80f;
+    public float minDist = 30f;
     public float speed;
 
-    [HideInInspector]
-    public bool isMoving;
+    [HideInInspector] public bool isMoving;
     public bool isDead;
 
     public Transform head;
 
-    public float maxDist = 4f;
+    public float maxDist = 80f;
 
     public float baseLife = 3f;
     private float _life;
@@ -44,7 +43,7 @@ public class AIManager : MonoBehaviour
         {
             isDead = true;
             isMoving = false;
-            Object.Destroy(gameObject, 3f);
+            Object.Destroy(gameObject, 10f);
         }
         else
         {
@@ -94,8 +93,8 @@ public class AIManager : MonoBehaviour
                     if (!isFreezed)
                     {
                         isMoving = true;
-                        transform.position = Vector3.MoveTowards(transform.position, _player.transform.position,
-                            speed * Time.deltaTime);
+                        /*transform.position = Vector3.MoveTowards(transform.position, _player.transform.position,
+                            speed * Time.deltaTime);*/
                     }
                 }
             }

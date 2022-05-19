@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -20,6 +22,10 @@ public class EnemyNavMesh : MonoBehaviour
         if (_aiManager.isMoving)
         {
             _navMeshAgent.destination = _targetTransform.position;
+        }
+        else if(_aiManager.isDead)
+        {
+            _navMeshAgent.isStopped = true;
         }
     }
 }
