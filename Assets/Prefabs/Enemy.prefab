@@ -1409,9 +1409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8d81d5593a5b940b927e01b4d24fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 7412934634307329383}
   minDist: 30
   speed: 3
   isMoving: 0
+  canShoot: 0
   isDead: 0
   head: {fileID: 4272300681180722398}
   maxDist: 3.5

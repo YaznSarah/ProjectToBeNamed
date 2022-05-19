@@ -6,18 +6,21 @@ using UnityEngine.UI;
 public class AIManager : MonoBehaviour
 {
     private GameObject _player;
-    private Animator _animator;
+    public Animator _animator;
     private Transform playerHead;
 
     public float minDist = 30f;
     public float speed;
 
-    [HideInInspector] public bool isMoving;
+    [HideInInspector] 
+    public bool isMoving;
+    [HideInInspector]
+    public bool canShoot = false;
     public bool isDead;
 
     public Transform head;
 
-    public float maxDist = 80f;
+    public float maxDist = 6f;
 
     public float baseLife = 3f;
     private float _life;
@@ -27,11 +30,11 @@ public class AIManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        canShoot = false;
         _life = baseLife;
         healthBar.fillAmount = 1;
         _player = GameObject.FindWithTag("Player");
-        _animator = GetComponentInChildren<Animator>();
         //get the children named PlayerHead from the player gameobject
         playerHead = _player.transform.GetChild(0).gameObject.transform.GetChild(0);
     }
@@ -43,7 +46,11 @@ public class AIManager : MonoBehaviour
         {
             isDead = true;
             isMoving = false;
+            healthBar.fillAmount = _life / baseLife;
+            gameObject.transform.GetChild(2).gameObject.SetActive(false);
             Object.Destroy(gameObject, 10f);
+            //get children component named Weapon
+
         }
         else
         {
@@ -68,38 +75,42 @@ public class AIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         Vector3 dist = (_player.transform.position - transform.position);
         Vector3 dir = (playerHead.transform.position - head.position).normalized;
 
         isMoving = false;
-
+        canShoot = false;
         //check with a ray if the player can be seen
         RaycastHit hit;
-        if (Physics.Raycast(head.position, dir, out hit, minDist))
+        if (!isDead && Physics.Raycast(head.position, dir, out hit, minDist))
         {
             if (hit.collider.gameObject.CompareTag("Player"))
-            {
+            {   
+
                 if (dist.sqrMagnitude < minDist * minDist)
                 {
+                    canShoot = true;
                     transform.LookAt(_player.transform);
                     //move towards the player
-                    if (dist.sqrMagnitude < maxDist * maxDist)
-                    {
-                        isMoving = true;
-                        _animator.SetBool("isMoving", true);
-                        return;
-                    }
 
-                    if (!isFreezed)
+                    if (dist.sqrMagnitude > maxDist * maxDist && !isFreezed)
                     {
                         isMoving = true;
-                        /*transform.position = Vector3.MoveTowards(transform.position, _player.transform.position,
-                            speed * Time.deltaTime);*/
+                    } else if(isFreezed)
+                    {
+                        isMoving = false;
+                    } else {
+                        isMoving = false;
+                        _animator.SetBool("isMoving", true);    
+                        _animator.SetBool("isDead", isDead);
+                        return;
                     }
                 }
             }
         }
 
+        isMoving = isMoving && !isDead;    
         _animator.SetBool("isMoving", isMoving);    
         _animator.SetBool("isDead", isDead);
 

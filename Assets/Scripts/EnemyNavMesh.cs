@@ -12,20 +12,22 @@ public class EnemyNavMesh : MonoBehaviour
     private AIManager _aiManager;
     private void Awake()
     {
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-        _aiManager = GetComponent<AIManager>();
+        _navMeshAgent = gameObject.GetComponent<NavMeshAgent>();
+        _aiManager = gameObject.GetComponent<AIManager>();
         _targetTransform = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
     {
         if (_aiManager.isMoving)
-        {
+        {   
+            _navMeshAgent.isStopped = false;
             _navMeshAgent.destination = _targetTransform.position;
         }
-        else if(_aiManager.isDead)
+        else if(_aiManager.isDead || !_aiManager.isMoving)
         {
             _navMeshAgent.isStopped = true;
         }
     }
 }
+ 

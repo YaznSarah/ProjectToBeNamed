@@ -15,13 +15,13 @@ public class HitSomeone : MonoBehaviour
             if (type == 1f)
             {
                 GameObject.FindWithTag("Player").GetComponent<PlayerLife>().giveLife(10);
+                other.gameObject.GetComponent<AIManager>().GetHit();
             }
             else
             {
                 GameObject.FindWithTag("Player").GetComponent<PlayerLife>().freezeLife(2);
                 other.gameObject.GetComponent<AIManager>().Freeze(4);
             }
-            other.gameObject.GetComponent<AIManager>().GetHit();
 
             Destroy(gameObject);
 

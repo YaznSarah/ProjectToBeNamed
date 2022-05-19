@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpHeight: 180
+  jumpHeight: 90
   sensi: 1
   _gravity: -20
   cam: {fileID: 4401041912777377222}

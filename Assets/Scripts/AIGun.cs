@@ -36,7 +36,7 @@ public class AIGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_ai.isMoving)
+        if (_ai.canShoot)
         {
             //if the firerate is at 0, then fire using the AIGun script
                 if (fireRate <= 0f)
